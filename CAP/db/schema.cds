@@ -33,6 +33,7 @@ entity Company : cuid{
 }
 
 entity DriverDetails{
+    key ID : UUID;
     driverName : String;
     driverNumber : String;
     driverLicenseNumber : String;
