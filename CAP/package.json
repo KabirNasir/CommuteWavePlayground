@@ -14,6 +14,13 @@
     "@cap-js/cds-types": "^0.6"
   },
   "scripts": {
-    "start": "cds-serve"
-  }
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-commute_wave": "cds watch --open commute_wave/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-nodal_points": "cds watch --open nodal_points/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/commute_wave",
+    "app/nodal_points"
+  ]
 }
