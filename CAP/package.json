@@ -10,17 +10,22 @@
     "express": "^4"
   },
   "devDependencies": {
+    "@cap-js/cds-types": "^0.6",
     "@cap-js/sqlite": "^1",
-    "@cap-js/cds-types": "^0.6"
+    "@sap/ux-specification": "^1.124.5"
   },
   "scripts": {
     "start": "cds-serve",
     "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-commute_wave": "cds watch --open commute_wave/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-nodal_points": "cds watch --open nodal_points/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-nodal_points": "cds watch --open nodal_points/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-shuttles": "cds watch --open shuttles/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-userapp": "cds watch --open userapp/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/commute_wave",
-    "app/nodal_points"
+    "app/nodal_points",
+    "app/shuttles",
+    "app/userapp"
   ]
 }

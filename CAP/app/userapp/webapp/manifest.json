@@ -1,19 +1,19 @@
 {
-  "_version": "1.65.0",
+  "_version": "1.59.0",
   "sap.app": {
-    "id": "commute.wave.nodalpoints",
+    "id": "userapp",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "Commute Wave",
-    "description": "Shuttle Reservation System",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.15.5",
-      "toolsId": "53e4b10b-fde2-48df-9c52-047fa22d8f1c"
+      "version": "1.14.1",
+      "toolsId": "dbcdab33-4b39-4e07-9214-eeff6dbe229a"
     },
     "dataSources": {
       "mainService": {
@@ -49,8 +49,8 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.f": {}
+        "sap.ushell": {},
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -61,7 +61,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "commute.wave.nodalpoints.i18n.i18n"
+          "bundleName": "userapp.i18n.i18n"
         }
       },
       "": {
@@ -82,43 +82,32 @@
       "css": []
     },
     "routing": {
-      "config": {
-        "flexibleColumnLayout": {
-          "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-          "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-        },
-        "routerClass": "sap.f.routing.Router"
-      },
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "NodalPointsList",
-          "target": [
-            "NodalPointsList"
-          ]
+          "name": "BookingList",
+          "target": "BookingList"
         },
         {
-          "pattern": "NodalPoints({key}):?query:",
-          "name": "NodalPointsObjectPage",
-          "target": [
-            "NodalPointsList",
-            "NodalPointsObjectPage"
-          ]
+          "pattern": "Booking({key}):?query:",
+          "name": "BookingObjectPage",
+          "target": "BookingObjectPage"
         }
       ],
       "targets": {
-        "NodalPointsList": {
+        "BookingList": {
           "type": "Component",
-          "id": "NodalPointsList",
+          "id": "BookingList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/NodalPoints",
+              "contextPath": "/Booking",
               "variantManagement": "Page",
               "navigation": {
-                "NodalPoints": {
+                "Booking": {
                   "detail": {
-                    "route": "NodalPointsObjectPage"
+                    "route": "BookingObjectPage"
                   }
                 }
               },
@@ -131,30 +120,20 @@
               },
               "initialLoad": "Enabled"
             }
-          },
-          "controlAggregation": "beginColumnPages",
-          "contextPattern": ""
+          }
         },
-        "NodalPointsObjectPage": {
+        "BookingObjectPage": {
           "type": "Component",
-          "id": "NodalPointsObjectPage",
+          "id": "BookingObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/NodalPoints"
+              "contextPath": "/Booking"
             }
-          },
-          "controlAggregation": "midColumnPages",
-          "contextPattern": "/NodalPoints({key})"
+          }
         }
       }
-    },
-    "rootView": {
-      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-      "type": "XML",
-      "async": true,
-      "id": "appRootView"
     }
   },
   "sap.fiori": {
