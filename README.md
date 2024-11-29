@@ -3,6 +3,13 @@
 ## Overview
 Effortless Shuttle Booking for Daily Commuters. Designed to streamline shuttle reservations and optimize routes for efficient commuting.
 
+## Team Members
+
+Dharithri Rai Badila Guthu - 2023SL93006
+Kabir Nasir - - 2023SL93023
+Navya Kumar Shetty - 2023SL93067
+Shetty Avish Devdas - 2023SL93068
+
 # Getting Started
 ## Prerequisites
 Before running the application, ensure you have the following prerequisites installed:
