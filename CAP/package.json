@@ -6,8 +6,10 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^8.5.0",
-    "express": "^4"
+    "@sap/cds": "^8",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.6",
@@ -21,6 +23,13 @@
     "watch-nodal_points": "cds watch --open nodal_points/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-shuttles": "cds watch --open shuttles/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-userapp": "cds watch --open userapp/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite"
+      }
+    }
   },
   "sapux": [
     "app/commute_wave",

@@ -1,6 +1,9 @@
 using { commute.wave as db } from '../db/schema';
 
 service AdminService {
+     action userAuthentication(Email : String, Password : String) returns {
+        jaat : String;
+  };
     entity NodalPoints as projection on db.NodalPoints;
     entity ShuttleRoutes as projection on db.ShuttleRoutes;
     entity BusDetails as projection on db.BusDetails;
