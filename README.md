@@ -5,7 +5,7 @@ Effortless Shuttle Booking for Daily Commuters. Designed to streamline shuttle r
 
 ## Team Members
 
-Dharithri Rai Badila Guthu - 2023SL93006
+Dharithri Rai Badila Guthu - 2023SL93006 \n
 Kabir Nasir - - 2023SL93023
 Navya Kumar Shetty - 2023SL93067
 Shetty Avish Devdas - 2023SL93068
