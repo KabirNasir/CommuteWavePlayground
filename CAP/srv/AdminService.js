@@ -13,6 +13,7 @@ class AdminService extends cds.ApplicationService {
       const hashedPassword = await bcrypt.hash(Password, saltRounds);
 
       req.data.Password = hashedPassword;
+      req.data.roles_code = "USER";
 
       return next();
     });
@@ -26,7 +27,10 @@ class AdminService extends cds.ApplicationService {
       if (!passwordMatch) {
         return req.reject(401, "Invalid email or password");
       }
-      const token = generateToken({ userId: user.ID, roles: user.roles });
+      const token = generateToken({
+        userId: user.ID,
+        roles: [user.roles_code],
+      });
       return { token };
     });
     this.on("assignPOC", async (req) => {
