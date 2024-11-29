@@ -44,7 +44,7 @@ entity Booking : cuid {
     employeeID : Association to Users;
     route : Association to ShuttleRoutes;
     date : DateTime;
-    status : Association to BookingStatus  ;
+    status : Association to BookingStatus  ; // ADD Handler to show status
 }
 @readonly 
 entity UserRole : CodeList{
@@ -57,7 +57,7 @@ entity UserRole : CodeList{
 }
 @readonly
 entity BookingStatus : CodeList {
-  key code : String(30) @assert.range enum {
+  key code : String(30) @assert.range enum { // remove delete
         WAITLISTED;
         BOOKED;
         CANCELLED;
@@ -70,6 +70,6 @@ entity Shuttles:  cuid{
     routeID : Association to ShuttleRoutes;
     driverID : Association to DriverDetails;
     date : DateTime;
-    isBusFull: Boolean;
+    isBusFull: Boolean; //ADD AHndler for this
     remainingSeats: Integer;
 }

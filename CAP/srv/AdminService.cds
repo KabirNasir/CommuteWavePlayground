@@ -11,7 +11,7 @@ service AdminService {
     entity ShuttleRoutes as projection on db.ShuttleRoutes;
     @restrict:[{grant:'READ',to:'USER'},{grant:'*',to:'POINTOFCONTACT'}]
     entity BusDetails as projection on db.BusDetails;
-    @restrict:[{grant:'*',to:'USER'},{grant:'*',to:'POINTOFCONTACT'}]
+    // @restrict:[{grant:'*',to:'USER'},{grant:'*',to:'POINTOFCONTACT'}]
     entity Users as projection on db.Users;
     @restrict:[{grant:'*',to:'ADMIN'}]
     entity Company as projection on db.Company;
