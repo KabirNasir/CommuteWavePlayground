@@ -6,4 +6,4 @@ using from './shuttles/annotations';
 
 using from './userapp/annotations';
 
-using from './frontend/annotations';
+using from './routes/annotations';
