@@ -1,10 +1,10 @@
-const { generateToken, verifyToken } = require("../utils/jwt-utils");
+const { generateToken } = require("../utils/jwt-utils");
 const bcrypt = require("bcrypt");
 const cds = require("@sap/cds");
 class AdminService extends cds.ApplicationService {
   #logger = cds.log("Admin-service");
   async init() {
-    this.#logger.info("ConsultationService Initialized");
+    this.#logger.info("AdminService Initialized");
     const { Users } = this.entities;
 
     this.on("POST", Users, async (req, next) => {
@@ -26,8 +26,13 @@ class AdminService extends cds.ApplicationService {
       if (!passwordMatch) {
         return req.reject(401, "Invalid email or password");
       }
-      const token = generateToken({ userId: user.ID, roles: "user" });
+      const token = generateToken({ userId: user.ID, roles: user.roles });
       return { token };
+    });
+    this.on("assignPOC", async (req) => {
+      const { ID } = req.data;
+      await UPDATE(Users).set({ roles: "POINTOFCONTACT" }).where({ ID });
+      return { success: true };
     });
     return super.init();
   }
