@@ -91,7 +91,6 @@ This API enables organizations to streamline shuttle operations for employees. E
 | `/shuttles/{shuttle_id}`          | DELETE | Remove a bus from the system.             | Shuttle              |
 
 
-
 ## Conclusion
 
 This Shuttle Management Application provides a comprehensive and efficient solution for managing shuttle routes, bookings, and operations. With features designed for easy user interaction, secure access, and real-time updates, the system streamlines shuttle management for both employees and administrators.
