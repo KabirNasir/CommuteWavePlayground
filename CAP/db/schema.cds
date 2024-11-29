@@ -25,6 +25,7 @@ entity Users : cuid{
     Name : String;
     Email : String;
     Password : String;
+    roles : Association to UserRole @default : #USER;
 }
 
 entity Company : cuid{
@@ -45,7 +46,15 @@ entity Booking : cuid {
     date : DateTime;
     status : Association to BookingStatus  ;
 }
-
+@readonly 
+entity UserRole : CodeList{
+      key code : String(30) @assert.range enum {
+      ADMIN;
+      POINTOFCONTACT;
+      USER;
+      };
+      name : String(30);
+}
 @readonly
 entity BookingStatus : CodeList {
   key code : String(30) @assert.range enum {
