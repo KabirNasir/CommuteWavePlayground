@@ -4,8 +4,7 @@ const { verifyToken } = require("../utils/jwt-utils");
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const path = req.path;
-  const url = req.url;
-  if (path.includes("Users")) {
+  if (path.includes("Users") || path.includes("userAuthentication")) {
     return next();
   }
   if (!authHeader) {
