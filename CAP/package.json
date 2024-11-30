@@ -14,7 +14,7 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0.6",
     "@cap-js/sqlite": "^1",
-    "@sap/ux-specification": "^1.124.5",
+    "@sap/ux-specification": "^1.124.6",
     "cds-swagger-ui-express": "^0.10.0"
   },
   "scripts": {
@@ -23,7 +23,9 @@
     "watch-commute_wave": "cds watch --open commute_wave/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-nodal_points": "cds watch --open nodal_points/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-shuttles": "cds watch --open shuttles/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-userapp": "cds watch --open userapp/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-userapp": "cds watch --open userapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-frontend": "cds watch --open frontend/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-companyportal": "cds watch --open companyportal/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -42,6 +44,8 @@
     "app/commute_wave",
     "app/nodal_points",
     "app/shuttles",
-    "app/userapp"
+    "app/userapp",
+    "app/frontend",
+    "app/companyportal"
   ]
 }
