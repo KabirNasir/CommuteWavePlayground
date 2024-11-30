@@ -82,7 +82,7 @@ class AdminService extends cds.ApplicationService {
       await UPDATE(Shuttles)
         .set({ remainingSeats: shuttle.remainingSeats - 1 })
         .where({ ID: shuttle_ID });
-      return next();
+      return req.data;
     });
     return super.init();
   }
