@@ -13,6 +13,8 @@ Navya Kumar Shetty - 2023SL93067
 
 Shetty Avish Devdas - 2023SL93068
 
+Venkata Aravind Donthi - 2023SL93060
+
 # Getting Started
 ## Prerequisites
 Before running the application, ensure you have the following prerequisites installed:
