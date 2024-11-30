@@ -25,7 +25,8 @@
     "watch-shuttles": "cds watch --open shuttles/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-userapp": "cds watch --open userapp/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-frontend": "cds watch --open frontend/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-companyportal": "cds watch --open companyportal/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-companyportal": "cds watch --open companyportal/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-adminportal": "cds watch --open adminportal/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -46,6 +47,7 @@
     "app/shuttles",
     "app/userapp",
     "app/frontend",
-    "app/companyportal"
+    "app/companyportal",
+    "app/adminportal"
   ]
 }
