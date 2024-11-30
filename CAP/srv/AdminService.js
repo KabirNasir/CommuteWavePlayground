@@ -44,7 +44,7 @@ class AdminService extends cds.ApplicationService {
       return { success: true };
     });
 
-    this.on("CREATE", Shuttles, async (req) => {
+    this.on("CREATE", Shuttles, async (req, next) => {
       const bus = await SELECT.one
         .from(BusDetails)
         .where({ ID: req.data.busID_ID });
@@ -71,14 +71,14 @@ class AdminService extends cds.ApplicationService {
       return { success: true };
     });
 
-    this.on("CREATE", Booking, async (req) => {
+    this.on("POST", Booking, async (req, next) => {
       const { shuttle_ID } = req.data;
       const shuttle = await SELECT.one.from(Shuttles).where({ ID: shuttle_ID });
       if (shuttle.remainingSeats === 0) {
         shuttle.isBusFull = true;
         return req.error(400, "No seats available!");
       }
-      req.data.status = "BOOKED";
+      req.data.status_code = "BOOKED";
       await UPDATE(Shuttles)
         .set({ remainingSeats: shuttle.remainingSeats - 1 })
         .where({ ID: shuttle_ID });
