@@ -38,6 +38,11 @@ class AdminService extends cds.ApplicationService {
       await UPDATE(Users).set({ roles_code: "POINTOFCONTACT" }).where({ ID });
       return { success: true };
     });
+    this.on("assignADMIN", async (req) => {
+      const { ID } = req.data;
+      await UPDATE(Users).set({ roles_code: "POINTOFCONTACT" }).where({ ID });
+      return { success: true };
+    });
 
     this.on("CREATE", Shuttles, async (req) => {
       const bus = await SELECT.one

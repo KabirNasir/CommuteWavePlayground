@@ -10,6 +10,8 @@ service AdminService {
    
     @restrict:[{grant:'*',to:'ADMIN'}]
   action assignPOC(ID : UUID) returns {success : Boolean};
+    @restrict:[{grant:'*',to:'ADMIN'}]
+  action assignADMIN(ID : UUID) returns {success : Boolean};
     @restrict:[{grant:'READ',to:'USER'},{grant:'*',to:'POINTOFCONTACT'}]
     entity NodalPoints as projection on db.NodalPoints;
     @restrict:[{grant:'READ',to:'USER'},{grant:'*',to:'POINTOFCONTACT'}]
