@@ -9,3 +9,5 @@ using from './userapp/annotations';
 using from './routes/annotations';
 
 using from './companyportal/annotations';
+
+using from './adminportal/annotations';
