@@ -35,7 +35,7 @@ class AdminService extends cds.ApplicationService {
     });
     this.on("assignPOC", async (req) => {
       const { ID } = req.data;
-      await UPDATE(Users).set({ roles: "POINTOFCONTACT" }).where({ ID });
+      await UPDATE(Users).set({ roles_code: "POINTOFCONTACT" }).where({ ID });
       return { success: true };
     });
 
