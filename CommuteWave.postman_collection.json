@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "137f9eeb-3cd5-4c21-9c7c-f5ba43863a35",
+		"name": "CommuteWave",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29518735",
+		"_collection_link": "https://bits-api-testing.postman.co/workspace/a81389d9-f611-4d84-bd27-45314cf22300/collection/29518735-137f9eeb-3cd5-4c21-9c7c-f5ba43863a35?action=share&source=collection_link&creator=29518735"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"Avish\",\r\n    \"Email\" : \"{{email}}\",\r\n    \"Password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/Users"
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Set 'token' as environment variable\", function () {\r",
+									"    pm.environment.set(\"token\", pm.response.json().token);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\" : \"{{email}}\",\r\n    \"Password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/userAuthentication"
+					},
+					"response": []
+				},
+				{
+					"name": "assignPOC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ID\" : \"2523488d-adef-4724-908d-ee5d1eb3a001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/assignPOC"
+					},
+					"response": []
+				},
+				{
+					"name": "assignADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ID\" : \"2523488d-adef-4724-908d-ee5d1eb3a001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/assignADMIN"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nodal Points",
+			"item": [
+				{
+					"name": "Get Nodal  Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/NodalPoints"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Nodal Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"aaaa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/NodalPoints"
+					},
+					"response": []
+				},
+				{
+					"name": "delete Nodal Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{host}}/NodalPoints({{nodal_id}})"
+					},
+					"response": []
+				},
+				{
+					"name": "get nodal points by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/NodalPoints({{nodal_id}})"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Get Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/Booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Book a seat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Save booking ID in collection variables\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.collectionVariables.set(\"booking_id\", responseBody.ID);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shuttle_ID\": \"15147834-5947-4ad5-b7d3-543526d79759\",\r\n  \"employeeID_ID\":\"25234949-4e50-4444-a515-0989bbf0054d\",\r\n  \"route_ID\": \"2523488d-adef-4724-908d-ee5d1eb3a001\",\r\n  \"date\" : \"2025-01-09T18:30:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/Booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/Booking({{booking_id}})"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"date\" : \"2025-11-09T18:30:00Z\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/Booking({{booking_id}})"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{host}}/Booking({{booking_id}})"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shuttles",
+			"item": [
+				{
+					"name": "get the shuttles",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get the shuttle for bookings",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "filter data for shuttles",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add the shuttles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"busID_ID\": \"01234567-89ab-cdef-0123-456789abcdef\",  \"routeID_ID\": \"01234567-89ab-cdef-0123-456789abcdef\",  \"driverID_ID\": \"01234567-89ab-cdef-0123-456789abcdef\",  \"date\": \"2017-04-13T15:51:04Z\",  \"isBusFull\": true,  \"remainingSeats\": 0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/Shuttles"
+					},
+					"response": []
+				},
+				{
+					"name": "update tthe details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"remainingSeats\": 23\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/Shuttles(eac22ef7-0a0b-43d6-82c9-45376a3b6469)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bus Details",
+			"item": [
+				{
+					"name": "Get Bus Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/BusDetails"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Bus Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"busNumber\": \"{{busNumber}}\",\r\n  \"seatCapacity\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/BusDetails"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Bus Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/BusDetails({{busNumber}})"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ShuttleRoutes Details",
+			"item": [
+				{
+					"name": "Get ShuttleRoutes by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/Booking/{{id}}/route",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Booking",
+								"{{id}}",
+								"route"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ShuttleRoutes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/ShuttleRoutes"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Shuttle Routes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"startPoint_ID\": \"01234567-89ab-cdef-0123-456789abcdef\",\n  \"endPoint_ID\": \"01234567-89ab-cdef-0123-456789abcdef\",\n  \"intermediatePoints\": [\n    {\n      \"ID\": \"01234567-89ab-cdef-0123-456789abcdef\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/ShuttleRoutes"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Driver",
+			"item": [
+				{
+					"name": "get Driver Details",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add Driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n\n \"driverName\": \"kabir\",\n  \"driverNumber\": \"1122334455\",\n  \"driverLicenseNumber\": \"122435436\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/DriverDetails"
+					},
+					"response": []
+				},
+				{
+					"name": "update driver details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driverNumber\": \"345465475\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/DriverDetails({{driver_id}})"
+					},
+					"response": []
+				},
+				{
+					"name": "delete driver details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{host}}/DriverDetails(0c5ffc8f-2c01-4499-9ce0-aaafe13acabc)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fiori Frontend",
+			"item": [
+				{
+					"name": "Frontend",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "shuttle_ID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "employeeID_ID",
+			"value": "01234567-89ab-cdef-0123-456789abcdef",
+			"type": "default"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "email",
+			"value": "john@sap.com",
+			"type": "default"
+		},
+		{
+			"key": "password",
+			"value": "1234",
+			"type": "default"
+		},
+		{
+			"key": "busNumber",
+			"value": "30",
+			"type": "default"
+		},
+		{
+			"key": "booking_id",
+			"value": "9fba5d8b-1442-4437-aabd-ea1777d101ba",
+			"type": "default"
+		},
+		{
+			"key": "bus_id",
+			"value": ""
+		},
+		{
+			"key": "shuttle_id",
+			"value": ""
+		},
+		{
+			"key": "driver_id",
+			"value": ""
+		},
+		{
+			"key": "nodal_id",
+			"value": ""
+		}
+	]
+}
